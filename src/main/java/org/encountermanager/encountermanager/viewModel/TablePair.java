@@ -10,7 +10,7 @@ public class TablePair {
     private final StringProperty ownMonName = new SimpleStringProperty("");
     private final StringProperty partnerMonName = new SimpleStringProperty("");
     private final StringProperty route = new SimpleStringProperty();
-    private final BooleanProperty deceased = new SimpleBooleanProperty();
+    private final StringProperty killedBy = new SimpleStringProperty();
 
     private PairStore pairStore = PairStore.getInstance();
 
@@ -47,24 +47,24 @@ public class TablePair {
         this.route.set(route);
     }
 
-    // Deceased
-    public boolean isDeceased() {
-        return deceased.get();
+    // KilledBy
+    public String getKilledBy() {
+        return killedBy.get();
     }
-    public BooleanProperty deceasedProperty() {
-        return deceased;
+    public StringProperty killedByProperty() {
+        return killedBy;
     }
-    public void setDeceased(boolean deceased) {
-        this.deceased.set(deceased);
+    public void setKilledBy(String killedBy) {
+        this.killedBy.set(killedBy);
     }
 
     public TablePair() {}
 
-    public TablePair(String ownMon, String partnerMon, String route, boolean deceased) {
+    public TablePair(String ownMon, String partnerMon, String route, String killedBy) {
         setOwnMonName(ownMon);
         setPartnerMonName(partnerMon);
         setRoute(route);
-        setDeceased(deceased);
+        setKilledBy(killedBy);
     }
 
     public ObservableList<TablePair> getPairsForTable() {

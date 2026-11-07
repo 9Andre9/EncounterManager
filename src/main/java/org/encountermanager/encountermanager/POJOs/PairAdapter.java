@@ -8,14 +8,19 @@ import java.io.IOException;
 
 public class PairAdapter extends TypeAdapter<Pair> {
 
+    private final String OwnMonField = "ownMon";
+    private final String PartnerMonField = "partnerMon";
+    private final String RouteField = "route";
+    private final String KilledByField = "killedBy";
+
     @Override
     public void write(JsonWriter out, Pair pair) throws IOException {
         out.beginObject();
 
-        out.name("ownMon").value(pair.getOwnMon());
-        out.name("partnerMon").value(pair.getPartnerMon());
-        out.name("route").value(pair.getRoute());
-        out.name("deceased").value(pair.isDeceased());
+        out.name(OwnMonField).value(pair.getOwnMon());
+        out.name(PartnerMonField).value(pair.getPartnerMon());
+        out.name(RouteField).value(pair.getRoute());
+        out.name(KilledByField).value(pair.getKilledBy());
 
         out.endObject();
     }
@@ -25,23 +30,23 @@ public class PairAdapter extends TypeAdapter<Pair> {
         String ownMon = null;
         String partnerMon = null;
         String route = null;
-        boolean deceased = false;
+        String killedBy = null;
 
         in.beginObject();
 
         while(in.hasNext()) {
             switch (in.nextName()) {
-                case "ownMon":
+                case OwnMonField:
                     ownMon = in.nextString();
                     break;
-                case "partnerMon":
+                case PartnerMonField:
                     partnerMon = in.nextString();
                     break;
-                case "route":
+                case RouteField:
                     route = in.nextString();
                     break;
-                case "deceased":
-                    deceased = in.nextBoolean();
+                case KilledByField:
+                    killedBy = in.nextString();
                     break;
                 default:
                     in.skipValue();
@@ -50,6 +55,6 @@ public class PairAdapter extends TypeAdapter<Pair> {
 
         in.endObject();
 
-        return new Pair(ownMon, partnerMon, route, deceased);
+        return new Pair(ownMon, partnerMon, route, killedBy);
     }
 }

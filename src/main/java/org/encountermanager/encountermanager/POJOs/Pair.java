@@ -4,13 +4,13 @@ public class Pair {
     private String ownMon;
     private String partnerMon;
     private String route;
-    private boolean deceased;
+    private String killedBy;
 
-    public Pair(String ownMon, String partnerMon, String route, boolean deceased) {
+    public Pair(String ownMon, String partnerMon, String route, String killedBy) {
         this.route = route;
         this.ownMon = ownMon;
         this.partnerMon = partnerMon;
-        this.deceased = deceased;
+        this.killedBy = killedBy;
     }
 
     public String getOwnMon() {
@@ -21,15 +21,15 @@ public class Pair {
         return partnerMon;
     }
 
-    public boolean isDeceased() {
-        return deceased;
+    public String getKilledBy() {
+        return killedBy;
     }
 
     public String getRoute() {
         return route;
     }
 
-    public void setDeceased(boolean deceased) {
-        this.deceased = deceased;
+    public void setKilledBy(String killedBy) {
+        this.killedBy = killedBy;
     }
 }

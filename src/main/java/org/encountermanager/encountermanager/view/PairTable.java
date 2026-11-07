@@ -4,7 +4,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
+import org.encountermanager.encountermanager.view.util.ComboBoxWithStyledLabel;
 import org.encountermanager.encountermanager.viewModel.TablePair;
 
 public class PairTable extends TableView<TablePair> {
@@ -36,31 +36,18 @@ public class PairTable extends TableView<TablePair> {
         this.setEditable(true);
     }
 
-    private TableColumn<TablePair, Boolean> setupDeceasedCol() {
-        TableColumn<TablePair, Boolean> deceasedCol = new TableColumn<>("Deceased");
-        deceasedCol.setCellValueFactory(
-                cellData -> cellData.getValue().deceasedProperty()
+    private TableColumn<TablePair, String> setupDeceasedCol() {
+        TableColumn<TablePair, String> killedByCol = new TableColumn<>("Pair Killed By");
+        killedByCol.setCellValueFactory(
+                cellData -> cellData.getValue().killedByProperty()
         );
-        deceasedCol.setCellFactory(p -> new CheckBoxTableCell<>() {
-            @Override
-            public void updateItem(Boolean item, boolean empty) {
-                super.updateItem(item, empty);
 
-                if (!(empty || item == null)) {
-                    if (item) {
-                        setStyle("-fx-background-color: red;");
-                    } else {
-                        setStyle("-fx-background-color: green;");
-                    }
-                } else {
-                    setStyle("");
-                }
-            }
-        });
 
-        deceasedCol.setEditable(true);
+        killedByCol.setCellFactory(p -> new ComboBoxWithStyledLabel<>("Alive", "You", "Partner"));
 
-        return deceasedCol;
+        killedByCol.setEditable(true);
+
+        return killedByCol;
     }
 
     public void clear(ActionEvent event) {

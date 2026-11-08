@@ -80,6 +80,7 @@
                             <noHeaderFiles>true</noHeaderFiles>
                             <options>
                                 <option>--add-exports=javafx.base/com.sun.javafx.event=org.controlsfx.controls</option>
+                                <option>--enable-native-access=javafx.graphics</option>
                             </options>
                         </configuration>
                     </execution>
